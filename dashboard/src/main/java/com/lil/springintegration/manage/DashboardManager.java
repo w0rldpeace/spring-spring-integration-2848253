@@ -39,13 +39,18 @@ public class DashboardManager {
 
     private void initializeTechSupport() {
         AppProperties props = (AppProperties) DashboardManager.context.getBean("appProperties");
-        DashboardManager.dashboardStatusDao.setProperty("softwareBuild", props.getRuntimeProperties().getProperty("software.build", "unknown"));
+        DashboardManager.dashboardStatusDao.setProperty(
+                "softwareBuild",
+                props.getRuntimeProperties().getProperty("software.build", "unknown")
+        );
 
         // Make an domain-specific payload object
-        // AppSupportStatus status =
-
+        AppSupportStatus status = new AppSupportStatus(props.getRuntimeProperties().getProperty(
+                "software.build", "unknown"),
+                new Date()
+        );
         // Use MessageBuilder utility class to construct a Message with our domain object as payload
-
+        GenericMessage message = (GenericMessage) MessageBuilder.withPayload(status).build();
         // Now, to send our message, we need a channel!
 
     }
