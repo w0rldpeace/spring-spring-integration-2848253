@@ -41,6 +41,7 @@ public class ViewService {
         GenericMessage<?> message = (GenericMessage<?>) updateNotificationChannel.receive(1000);
         if (message != null) {
             // No logical change here, just a println to show the polling activity
+            System.out.println("ViewService received a message from the updateNotificationChannel queue.");
             AppSupportStatus payload = (AppSupportStatus) message.getPayload();
             DashboardManager.setDashboardStatus("softwareBuild", payload.getCustomerNotification());
         }
