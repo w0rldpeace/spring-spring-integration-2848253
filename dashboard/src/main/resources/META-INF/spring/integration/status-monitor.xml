@@ -23,6 +23,9 @@
 
     <!-- ServiceActivator example -->
     <!-- Challenge: Add a ServiceActivator to the message flow -->
+    <int:service-activator input-channel="statusMonitorChannel"
+                           ref="accountCreditService"
+                           method="creditCustomerAccount" /> <!-- Hint: method name is "creditCustomerAccount" -->
     <!-- Hint: element name is 'service-activator' -->
     <!-- Hint: you will need three attributes: input-channel, ref, method/> -->
     <!-- Hint: See here for technical specifications on ServiceActivator -->
